@@ -1,0 +1,19 @@
+#!/usr/bin/python   
+
+import scapy.all as scapy
+
+def sniff_packets(interface, count):
+    print(f"Sniffing {count} packets on interface {interface}...")
+    sniffed_packets = scapy.sniff(iface=interface, count=count)
+    return sniffed_packets
+
+def analyze_packets(packets):
+    for packet in packets:
+        print(f"Packet summary: {packet.summary()}")
+
+
+interface_name = "eth0"  # Replace with your network interface name
+packet_count = 10  # Number of packets to capture
+
+captured_packets = sniff_packets(interface_name, packet_count)
+analyze_packets(captured_packets)
